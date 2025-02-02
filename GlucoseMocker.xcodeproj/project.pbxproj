@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		702D3C562D50142900EC0AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 702D3C3D2D50142800EC0AEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 702D3C442D50142800EC0AEE;
+			remoteInfo = GlucoseMocker;
+		};
+		702D3C602D50142900EC0AEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 702D3C3D2D50142800EC0AEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 702D3C442D50142800EC0AEE;
+			remoteInfo = GlucoseMocker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		702D3C452D50142800EC0AEE /* GlucoseMocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlucoseMocker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		702D3C552D50142900EC0AEE /* GlucoseMockerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseMockerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		702D3C5F2D50142900EC0AEE /* GlucoseMockerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlucoseMockerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		702D3C472D50142800EC0AEE /* GlucoseMocker */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GlucoseMocker;
+			sourceTree = "<group>";
+		};
+		702D3C582D50142900EC0AEE /* GlucoseMockerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GlucoseMockerTests;
+			sourceTree = "<group>";
+		};
+		702D3C622D50142900EC0AEE /* GlucoseMockerUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GlucoseMockerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		702D3C422D50142800EC0AEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C522D50142900EC0AEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C5C2D50142900EC0AEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		702D3C3C2D50142800EC0AEE = {
+			isa = PBXGroup;
+			children = (
+				702D3C472D50142800EC0AEE /* GlucoseMocker */,
+				702D3C582D50142900EC0AEE /* GlucoseMockerTests */,
+				702D3C622D50142900EC0AEE /* GlucoseMockerUITests */,
+				702D3C462D50142800EC0AEE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		702D3C462D50142800EC0AEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				702D3C452D50142800EC0AEE /* GlucoseMocker.app */,
+				702D3C552D50142900EC0AEE /* GlucoseMockerTests.xctest */,
+				702D3C5F2D50142900EC0AEE /* GlucoseMockerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		702D3C442D50142800EC0AEE /* GlucoseMocker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 702D3C692D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMocker" */;
+			buildPhases = (
+				702D3C412D50142800EC0AEE /* Sources */,
+				702D3C422D50142800EC0AEE /* Frameworks */,
+				702D3C432D50142800EC0AEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				702D3C472D50142800EC0AEE /* GlucoseMocker */,
+			);
+			name = GlucoseMocker;
+			packageProductDependencies = (
+			);
+			productName = GlucoseMocker;
+			productReference = 702D3C452D50142800EC0AEE /* GlucoseMocker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		702D3C542D50142900EC0AEE /* GlucoseMockerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 702D3C6C2D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMockerTests" */;
+			buildPhases = (
+				702D3C512D50142900EC0AEE /* Sources */,
+				702D3C522D50142900EC0AEE /* Frameworks */,
+				702D3C532D50142900EC0AEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				702D3C572D50142900EC0AEE /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				702D3C582D50142900EC0AEE /* GlucoseMockerTests */,
+			);
+			name = GlucoseMockerTests;
+			packageProductDependencies = (
+			);
+			productName = GlucoseMockerTests;
+			productReference = 702D3C552D50142900EC0AEE /* GlucoseMockerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		702D3C5E2D50142900EC0AEE /* GlucoseMockerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 702D3C6F2D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMockerUITests" */;
+			buildPhases = (
+				702D3C5B2D50142900EC0AEE /* Sources */,
+				702D3C5C2D50142900EC0AEE /* Frameworks */,
+				702D3C5D2D50142900EC0AEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				702D3C612D50142900EC0AEE /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				702D3C622D50142900EC0AEE /* GlucoseMockerUITests */,
+			);
+			name = GlucoseMockerUITests;
+			packageProductDependencies = (
+			);
+			productName = GlucoseMockerUITests;
+			productReference = 702D3C5F2D50142900EC0AEE /* GlucoseMockerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		702D3C3D2D50142800EC0AEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					702D3C442D50142800EC0AEE = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					702D3C542D50142900EC0AEE = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 702D3C442D50142800EC0AEE;
+					};
+					702D3C5E2D50142900EC0AEE = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 702D3C442D50142800EC0AEE;
+					};
+				};
+			};
+			buildConfigurationList = 702D3C402D50142800EC0AEE /* Build configuration list for PBXProject "GlucoseMocker" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 702D3C3C2D50142800EC0AEE;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 702D3C462D50142800EC0AEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				702D3C442D50142800EC0AEE /* GlucoseMocker */,
+				702D3C542D50142900EC0AEE /* GlucoseMockerTests */,
+				702D3C5E2D50142900EC0AEE /* GlucoseMockerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		702D3C432D50142800EC0AEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C532D50142900EC0AEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C5D2D50142900EC0AEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		702D3C412D50142800EC0AEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C512D50142900EC0AEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		702D3C5B2D50142900EC0AEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		702D3C572D50142900EC0AEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 702D3C442D50142800EC0AEE /* GlucoseMocker */;
+			targetProxy = 702D3C562D50142900EC0AEE /* PBXContainerItemProxy */;
+		};
+		702D3C612D50142900EC0AEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 702D3C442D50142800EC0AEE /* GlucoseMocker */;
+			targetProxy = 702D3C602D50142900EC0AEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		702D3C672D50142900EC0AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		702D3C682D50142900EC0AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		702D3C6A2D50142900EC0AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseMocker/Preview Content\"";
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		702D3C6B2D50142900EC0AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GlucoseMocker/Preview Content\"";
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMocker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		702D3C6D2D50142900EC0AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMockerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseMocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GlucoseMocker";
+			};
+			name = Debug;
+		};
+		702D3C6E2D50142900EC0AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMockerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GlucoseMocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GlucoseMocker";
+			};
+			name = Release;
+		};
+		702D3C702D50142900EC0AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMockerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseMocker;
+			};
+			name = Debug;
+		};
+		702D3C712D50142900EC0AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = G63BL4UP5A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aliaksandrrusak.GlucoseMockerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GlucoseMocker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		702D3C402D50142800EC0AEE /* Build configuration list for PBXProject "GlucoseMocker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702D3C672D50142900EC0AEE /* Debug */,
+				702D3C682D50142900EC0AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		702D3C692D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMocker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702D3C6A2D50142900EC0AEE /* Debug */,
+				702D3C6B2D50142900EC0AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		702D3C6C2D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMockerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702D3C6D2D50142900EC0AEE /* Debug */,
+				702D3C6E2D50142900EC0AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		702D3C6F2D50142900EC0AEE /* Build configuration list for PBXNativeTarget "GlucoseMockerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702D3C702D50142900EC0AEE /* Debug */,
+				702D3C712D50142900EC0AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 702D3C3D2D50142800EC0AEE /* Project object */;
+}
