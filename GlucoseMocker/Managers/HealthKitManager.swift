@@ -21,11 +21,13 @@ class HealthKitManager {
         guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
 
         var convertedValue = value
-        var finalUnit = unit.hkUnit
+        let finalUnit: HKUnit
 
-        // Если выбран mmol/L, конвертируем в mg/dL
+        // Если в mmol/L, то конвертируем в mg/dL
         if unit == .mmolL {
             convertedValue *= 18.0182
+            finalUnit = HKUnit(from: "mg/dL")
+        } else {
             finalUnit = HKUnit(from: "mg/dL")
         }
 
@@ -40,5 +42,6 @@ class HealthKitManager {
             }
         }
     }
+
 
 }

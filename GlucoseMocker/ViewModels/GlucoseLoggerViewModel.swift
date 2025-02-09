@@ -15,7 +15,9 @@ class GlucoseLoggerViewModel: ObservableObject {
         didSet { convertValues(from: oldValue, to: selectedUnit) }
     }
     
-    private var timer: Timer?
+    @Published var showToast: Bool = false
+    @Published var toastMessage: String?
+    
     private let healthStore = HKHealthStore()
     
     init() {
@@ -26,10 +28,12 @@ class GlucoseLoggerViewModel: ObservableObject {
         guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
         
         healthStore.requestAuthorization(toShare: [glucoseType], read: [glucoseType]) { success, error in
-            if success {
-                print("✅ HealthKit доступ разрешен")
-            } else {
-                print("❌ Ошибка авторизации HealthKit: \(error?.localizedDescription ?? "Неизвестная ошибка")")
+            DispatchQueue.main.async {
+                if success {
+                    print("✅ HealthKit доступ разрешен")
+                } else {
+                    self.showToastMessage("❌ Ошибка авторизации HealthKit")
+                }
             }
         }
     }
@@ -37,38 +41,20 @@ class GlucoseLoggerViewModel: ObservableObject {
     private func convertValues(from oldUnit: GlucoseUnit, to newUnit: GlucoseUnit) {
         guard oldUnit != newUnit else { return }
         
+        let conversionFactor = 18.0182
         if newUnit == .mgdL {
-            glucoseValue *= 18.0182
-            minGlucose *= 18.0182
-            maxGlucose *= 18.0182
+            glucoseValue *= conversionFactor
+            minGlucose *= conversionFactor
+            maxGlucose *= conversionFactor
         } else {
-            glucoseValue /= 18.0182
-            minGlucose /= 18.0182
-            maxGlucose /= 18.0182
+            glucoseValue /= conversionFactor
+            minGlucose /= conversionFactor
+            maxGlucose /= conversionFactor
         }
     }
 
     func writeManualGlucoseData() {
-        guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
-        
-        var convertedValue = glucoseValue
-        var finalUnit = selectedUnit.hkUnit
-        
-        if selectedUnit == .mmolL {
-            convertedValue /= 18.0182
-            finalUnit = HKUnit(from: "mg/dL")
-        }
-        
-        let quantity = HKQuantity(unit: finalUnit, doubleValue: convertedValue)
-        let sample = HKQuantitySample(type: glucoseType, quantity: quantity, start: timestamp, end: timestamp)
-        
-        healthStore.save(sample) { success, error in
-            if success {
-                print("✅ Записано значение глюкозы: \(convertedValue) \(finalUnit) с таймстампом \(self.timestamp)")
-            } else {
-                print("❌ Ошибка записи: \(error?.localizedDescription ?? "Неизвестная ошибка")")
-            }
-        }
+        writeGlucoseData(value: glucoseValue, timestamp: timestamp, isManual: true)
     }
 
     func startAutoLogging() {
@@ -79,7 +65,6 @@ class GlucoseLoggerViewModel: ObservableObject {
     
     func stopAutoLogging() {
         isAutoLogging = false
-        timer?.invalidate()
     }
     
     func logAllEntriesInRange() {
@@ -87,17 +72,50 @@ class GlucoseLoggerViewModel: ObservableObject {
         let maxEntries = Int((autoEndTime.timeIntervalSince(autoStartTime) / 60) / interval)
         var count = 0
         
-        while currentTime <= autoEndTime && isAutoLogging && count <= maxEntries {
+        while currentTime <= autoEndTime && isAutoLogging && count < maxEntries {
             let randomGlucose = Double.random(in: minGlucose...maxGlucose)
-            writeManualGlucoseData()
-            print("Записано значение \(randomGlucose) \(selectedUnit.rawValue) на \(currentTime)")
-            
+            writeGlucoseData(value: randomGlucose, timestamp: currentTime, isManual: false)
+
             currentTime = Calendar.current.date(byAdding: .minute, value: Int(interval), to: currentTime) ?? currentTime
             count += 1
         }
-        
+
         DispatchQueue.main.async {
+            self.showToastMessage("✅ Записано автоматически: \(count) значений")
             self.isAutoLogging = false
+        }
+    }
+    
+    private func writeGlucoseData(value: Double, timestamp: Date, isManual: Bool) {
+        guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
+        
+        var convertedValue = value
+        let finalUnit = HKUnit(from: "mg/dL") // HealthKit требует mg/dL
+        
+        if selectedUnit == .mmolL {
+            convertedValue *= 18.0182
+        }
+        
+        let quantity = HKQuantity(unit: finalUnit, doubleValue: convertedValue)
+        let sample = HKQuantitySample(type: glucoseType, quantity: quantity, start: timestamp, end: timestamp)
+        
+        healthStore.save(sample) { [weak self] success, error in
+            DispatchQueue.main.async {
+                if success && isManual {
+                    self?.showToastMessage("✅ Записано вручную: \(convertedValue) \(self?.selectedUnit.rawValue ?? "")")
+                } else if !success {
+                    self?.showToastMessage("❌ Ошибка записи: \(error?.localizedDescription ?? "Неизвестная ошибка")")
+                }
+            }
+        }
+    }
+    
+    private func showToastMessage(_ message: String) {
+        toastMessage = message
+        showToast = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.showToast = false
         }
     }
 }
