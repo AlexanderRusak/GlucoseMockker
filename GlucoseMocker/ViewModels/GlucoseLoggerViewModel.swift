@@ -4,14 +4,19 @@ import HealthKit
 // MARK: - Glucose Logger ViewModel
 class GlucoseLoggerViewModel: ObservableObject {
     @Published var isAutoLogging = false
-    @Published var glucoseValue: Double = 100.0 // Начальное значение в mg/dL
+    @Published var glucoseValue: Double = 100.0
     @Published var minGlucose: Double = 72.0
     @Published var maxGlucose: Double = 140.0
-    @Published var interval: Double = 5 // Минуты
+    @Published var interval: Double = 5
+    @Published var step: Double = 1.0 // Шаг увеличения
     @Published var timestamp: Date = Date()
+    
+    @Published var autoMinGlucose: Double = 72.0
+    @Published var autoMaxGlucose: Double = 140.0
     @Published var autoStartTime: Date = Calendar.current.date(byAdding: .minute, value: -5, to: Date()) ?? Date()
     @Published var autoEndTime: Date = Calendar.current.date(byAdding: .minute, value: 0, to: Date()) ?? Date()
-    @Published var selectedUnit: GlucoseUnit = .mgdL { // mg/dL теперь по умолчанию
+
+    @Published var selectedUnit: GlucoseUnit = .mgdL {
         didSet { convertValues(from: oldValue, to: selectedUnit) }
     }
     
@@ -46,15 +51,23 @@ class GlucoseLoggerViewModel: ObservableObject {
             glucoseValue *= conversionFactor
             minGlucose *= conversionFactor
             maxGlucose *= conversionFactor
+            autoMinGlucose *= conversionFactor
+            autoMaxGlucose *= conversionFactor
         } else {
             glucoseValue /= conversionFactor
             minGlucose /= conversionFactor
             maxGlucose /= conversionFactor
+            autoMinGlucose /= conversionFactor
+            autoMaxGlucose /= conversionFactor
         }
     }
 
     func writeManualGlucoseData() {
-        writeGlucoseData(value: glucoseValue, timestamp: timestamp, isManual: true)
+        writeGlucoseData(value: glucoseValue, timestamp: timestamp)
+    }
+    
+    func deleteManualGlucoseData() {
+        deleteGlucoseData(timestamp: timestamp)
     }
 
     func startAutoLogging() {
@@ -67,14 +80,34 @@ class GlucoseLoggerViewModel: ObservableObject {
         isAutoLogging = false
     }
     
+    func deleteAutoLoggedData() {
+        deleteGlucoseData(timestamp: autoStartTime, endTimestamp: autoEndTime)
+    }
+    
     func logAllEntriesInRange() {
         var currentTime = autoStartTime
+        var currentValue = autoMinGlucose
         let maxEntries = Int((autoEndTime.timeIntervalSince(autoStartTime) / 60) / interval)
         var count = 0
-        
+        var increasing = true // Направление изменения
+
         while currentTime <= autoEndTime && isAutoLogging && count < maxEntries {
-            let randomGlucose = Double.random(in: minGlucose...maxGlucose)
-            writeGlucoseData(value: randomGlucose, timestamp: currentTime, isManual: false)
+            writeGlucoseData(value: currentValue, timestamp: currentTime)
+
+            // Изменяем значение по шагу
+            if increasing {
+                currentValue += step
+                if currentValue >= autoMaxGlucose {
+                    currentValue = autoMaxGlucose
+                    increasing = false // Начинаем уменьшать
+                }
+            } else {
+                currentValue -= step
+                if currentValue <= autoMinGlucose {
+                    currentValue = autoMinGlucose
+                    increasing = true // Начинаем увеличивать
+                }
+            }
 
             currentTime = Calendar.current.date(byAdding: .minute, value: Int(interval), to: currentTime) ?? currentTime
             count += 1
@@ -86,11 +119,11 @@ class GlucoseLoggerViewModel: ObservableObject {
         }
     }
     
-    private func writeGlucoseData(value: Double, timestamp: Date, isManual: Bool) {
+    private func writeGlucoseData(value: Double, timestamp: Date) {
         guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
         
         var convertedValue = value
-        let finalUnit = HKUnit(from: "mg/dL") // HealthKit требует mg/dL
+        let finalUnit = HKUnit(from: "mg/dL")
         
         if selectedUnit == .mmolL {
             convertedValue *= 18.0182
@@ -101,14 +134,55 @@ class GlucoseLoggerViewModel: ObservableObject {
         
         healthStore.save(sample) { [weak self] success, error in
             DispatchQueue.main.async {
-                if success && isManual {
-                    self?.showToastMessage("✅ Записано вручную: \(convertedValue) \(self?.selectedUnit.rawValue ?? "")")
-                } else if !success {
+                if success {
+                    self?.showToastMessage("✅ Записано: \(convertedValue) \(self?.selectedUnit.rawValue ?? "")")
+                } else {
                     self?.showToastMessage("❌ Ошибка записи: \(error?.localizedDescription ?? "Неизвестная ошибка")")
                 }
             }
         }
     }
+    
+    private func deleteGlucoseData(timestamp: Date, endTimestamp: Date? = nil) {
+        guard let glucoseType = HKObjectType.quantityType(forIdentifier: .bloodGlucose) else { return }
+
+        let adjustedEndTimestamp = endTimestamp ?? Calendar.current.date(byAdding: .minute, value: 1, to: timestamp)
+
+        let predicate = HKQuery.predicateForSamples(
+            withStart: timestamp,
+            end: adjustedEndTimestamp,
+            options: .strictEndDate
+        )
+
+        let query = HKSampleQuery(sampleType: glucoseType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { [weak self] _, results, error in
+            guard let self = self, let samples = results as? [HKQuantitySample], error == nil else {
+                DispatchQueue.main.async {
+                    self?.showToastMessage("❌ Ошибка удаления: \(error?.localizedDescription ?? "Неизвестная ошибка")")
+                }
+                return
+            }
+
+            guard !samples.isEmpty else {
+                DispatchQueue.main.async {
+                    self.showToastMessage("⚠️ Нет записей для удаления")
+                }
+                return
+            }
+
+            self.healthStore.delete(samples) { success, error in
+                DispatchQueue.main.async {
+                    if success {
+                        self.showToastMessage("🗑 Удалено: \(samples.count) записей")
+                    } else {
+                        self.showToastMessage("❌ Ошибка удаления: \(error?.localizedDescription ?? "Неизвестная ошибка")")
+                    }
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+
     
     private func showToastMessage(_ message: String) {
         toastMessage = message
