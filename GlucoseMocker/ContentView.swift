@@ -1,14 +1,13 @@
 import SwiftUI
 import HealthKit
 
-// MARK: - Content View
 struct ContentView: View {
     @StateObject private var viewModel = GlucoseLoggerViewModel()
     
     var body: some View {
         ZStack {
             Form {
-                // 🔵 Ручная запись
+                // Ручная запись
                 Section(header: Text("Ручная запись")) {
                     Picker("Единицы измерения", selection: $viewModel.selectedUnit) {
                         ForEach(GlucoseUnit.allCases, id: \.self) { unit in
@@ -17,25 +16,24 @@ struct ContentView: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     
-                    Stepper(
-                        value: $viewModel.glucoseValue,
-                        in: viewModel.selectedUnit == .mgdL ? 54.0...180.0 : 3.0...10.0,
-                        step: viewModel.selectedUnit == .mgdL ? 1.0 : 0.1
-                    ) {
+                    // Степпер для ручного значения
+                    Stepper(value: $viewModel.glucoseValue,
+                            in: (viewModel.selectedUnit == .mgdL ? 54.0...180.0 : 3.0...10.0),
+                            step: (viewModel.selectedUnit == .mgdL ? 1.0 : 0.1)) {
                         Text("Ручное значение: \(String(format: "%.1f", viewModel.glucoseValue)) \(viewModel.selectedUnit.rawValue)")
                     }
                     
-                    DatePicker("Время записи", selection: $viewModel.timestamp, displayedComponents: [.hourAndMinute, .date])
-                        .datePickerStyle(CompactDatePickerStyle())
+                    // Кастомный пикер с секундами
+                    DatePickerWithSeconds(date: $viewModel.timestamp)
                     
                     HStack {
                         Button("Записать") {
                             viewModel.writeManualGlucoseData()
                         }
                         .buttonStyle(.borderedProminent)
-
-                        Spacer() // Раскидываем кнопки по краям
-
+                        
+                        Spacer()
+                        
                         Button("Удалить") {
                             viewModel.deleteManualGlucoseData()
                         }
@@ -44,21 +42,34 @@ struct ContentView: View {
                     }
                 }
                 
-                // 🔴 Автоматическая запись
+                // Автоматическая запись
                 Section(header: Text("Автоматическая запись")) {
-                    DatePicker("Время начала", selection: $viewModel.autoStartTime, displayedComponents: [.hourAndMinute, .date])
-                        .datePickerStyle(CompactDatePickerStyle())
+                    DatePickerWithSeconds(date: $viewModel.autoStartTime)
+                    DatePickerWithSeconds(date: $viewModel.autoEndTime)
                     
-                    DatePicker("Время окончания", selection: $viewModel.autoEndTime, displayedComponents: [.hourAndMinute, .date])
-                        .datePickerStyle(CompactDatePickerStyle())
-
-                    Stepper("От: \(String(format: "%.1f", viewModel.autoMinGlucose)) \(viewModel.selectedUnit.rawValue)", value: $viewModel.autoMinGlucose, in: viewModel.selectedUnit == .mgdL ? 54.0...180.0 : 3.0...10.0, step: viewModel.selectedUnit == .mgdL ? 1.0 : 0.1)
+                    // От
+                    Stepper(value: $viewModel.autoMinGlucose,
+                            in: (viewModel.selectedUnit == .mgdL ? 54.0...180.0 : 3.0...10.0),
+                            step: (viewModel.selectedUnit == .mgdL ? 1.0 : 0.1)) {
+                        Text("От: \(String(format: "%.1f", viewModel.autoMinGlucose)) \(viewModel.selectedUnit.rawValue)")
+                    }
                     
-                    Stepper("До: \(String(format: "%.1f", viewModel.autoMaxGlucose)) \(viewModel.selectedUnit.rawValue)", value: $viewModel.autoMaxGlucose, in: viewModel.autoMinGlucose...180.0, step: viewModel.selectedUnit == .mgdL ? 1.0 : 0.1)
+                    // До
+                    Stepper(value: $viewModel.autoMaxGlucose,
+                            in: viewModel.autoMinGlucose...(viewModel.selectedUnit == .mgdL ? 180.0 : 10.0),
+                            step: (viewModel.selectedUnit == .mgdL ? 1.0 : 0.1)) {
+                        Text("До: \(String(format: "%.1f", viewModel.autoMaxGlucose)) \(viewModel.selectedUnit.rawValue)")
+                    }
                     
-                    Stepper("Шаг: \(String(format: "%.1f", viewModel.step)) \(viewModel.selectedUnit.rawValue)", value: $viewModel.step, in: 1...10, step: 1)
+                    // Шаг
+                    Stepper(value: $viewModel.step, in: 1...10, step: 1) {
+                        Text("Шаг: \(String(format: "%.1f", viewModel.step)) \(viewModel.selectedUnit.rawValue)")
+                    }
                     
-                    Stepper("Частота (мин): \(Int(viewModel.interval))", value: $viewModel.interval, in: 1...60, step: 1)
+                    // Частота (секунды) — Stepper
+                    Stepper(value: $viewModel.intervalInSeconds, in: 1...3600, step: 1) {
+                        Text("Частота (сек): \(Int(viewModel.intervalInSeconds))")
+                    }
                     
                     HStack {
                         Button(viewModel.isAutoLogging ? "Остановить" : "Запустить") {
@@ -70,7 +81,7 @@ struct ContentView: View {
                         }
                         .buttonStyle(.borderedProminent)
                         
-                        Spacer() // Раскидываем кнопки по краям
+                        Spacer()
                         
                         Button("Удалить") {
                             viewModel.deleteAutoLoggedData()
@@ -81,7 +92,7 @@ struct ContentView: View {
                 }
             }
             
-            // 🔔 Всплывающее уведомление
+            // Всплывающее уведомление (тост)
             if viewModel.showToast {
                 VStack {
                     Spacer()
